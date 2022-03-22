@@ -1,12 +1,18 @@
 <edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml">
+        <edmx:Include Namespace="Org.OData.Core.V1" Alias="Core"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Aggregation.V1.xml">
+        <edmx:Include Namespace="Org.OData.Aggregation.V1" Alias="Aggregation"/>
+    </edmx:Reference>
     <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
         <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/>
     </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Capabilities.V1.xml">
+        <edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities"/>
+    </edmx:Reference>
     <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/UI.xml">
         <edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="UI"/>
-    </edmx:Reference>
-    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Communication.xml">
-        <edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/>
     </edmx:Reference>
     <edmx:Reference Uri="/v2/northwind/northwind.svc/$metadata">
         <edmx:Include Namespace="NorthwindModel"/>
@@ -14,6 +20,321 @@
     </edmx:Reference>
     <edmx:DataServices>
         <Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="local">
+            <Annotations Target="NorthwindModel.Order">
+                <Annotation Term="UI.PresentationVariant">
+                    <Record Type="UI.PresentationVariantType">
+                        <PropertyValue Property="RequestAtLeast">
+                            <Collection>
+                                <PropertyPath>Employee/FirstName</PropertyPath>
+                                <PropertyPath>Employee/LastName</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.LineItem">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="OrderID"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="OrderDate"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="Customer/CompanyName"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="Shipper/CompanyName"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="ShipCountry"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.SelectionFields">
+                    <Collection>
+                        <PropertyPath>OrderID</PropertyPath>
+                        <PropertyPath>EmployeeID</PropertyPath>
+                        <PropertyPath>CustomerID</PropertyPath>
+                        <PropertyPath>OrderDate</PropertyPath>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.FieldGroup" Qualifier="Employee" >
+                    <Record Type="UI.FieldGroupType">
+                        <PropertyValue Property="Data">
+                            <Collection>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="Employee/Address"/>
+                                    <PropertyValue Property="Label" String="{@i18n>Address}"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="Employee/City"/>
+                                    <PropertyValue Property="Label" String="{@i18n>City}"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="Employee/Country"/>
+                                    <PropertyValue Property="Label" String="{@i18n>Country}"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="Employee/FirstName"/>
+                                    <PropertyValue Property="Label" String="{@i18n>FirstName}"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="Employee/LastName"/>
+                                    <PropertyValue Property="Label" String="{@i18n>LastName}"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="Employee/Region"/>
+                                    <PropertyValue Property="Label" String="{@i18n>Region}"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.FieldGroup" Qualifier="Customer">
+                    <Record Type="UI.FieldGroupType">
+                        <PropertyValue Property="Label" String="{@i18n>Customer}"/>
+                        <PropertyValue Property="Data">
+                            <Collection>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="Customer/Address"/>
+                                    <PropertyValue Property="Label" String="{@i18n>Address}"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="Customer/City"/>
+                                    <PropertyValue Property="Label" String="{@i18n>City}"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="Customer/CompanyName"/>
+                                    <PropertyValue Property="Label" String="{@i18n>CompanyName}"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="Customer/ContactName"/>
+                                    <PropertyValue Property="Label" String="{@i18n>ContactName}"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="Customer/ContactTitle"/>
+                                    <PropertyValue Property="Label" String="{@i18n>ContactTitle}"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="Customer/Country"/>
+                                    <PropertyValue Property="Label" String="{@i18n>Country}"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="Customer/Phone"/>
+                                    <PropertyValue Property="Label" String="{@i18n>Phone}"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="Customer/Region"/>
+                                    <PropertyValue Property="Label" String="{@i18n>Region}"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.FieldGroup" Qualifier="OrderID">
+                    <Record Type="UI.FieldGroupType">
+                        <PropertyValue Property="Data">
+                            <Collection>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="OrderID"/>
+                                    <PropertyValue Property="Label" String="{@i18n>OrderID}"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.FieldGroup" Qualifier="OrderDate">
+                    <Record Type="UI.FieldGroupType">
+                        <PropertyValue Property="Data">
+                            <Collection>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="OrderDate"/>
+                                    <PropertyValue Property="Label" String="{@i18n>OrderDate}"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.FieldGroup" Qualifier="Freight">
+                    <Record Type="UI.FieldGroupType">
+                        <PropertyValue Property="Data">
+                            <Collection>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="Freight"/>
+                                    <PropertyValue Property="Label" String="{@i18n>Freight}"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.FieldGroup" Qualifier="RequiredDate">
+                    <Record Type="UI.FieldGroupType">
+                        <PropertyValue Property="Data">
+                            <Collection>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="RequiredDate"/>
+                                    <PropertyValue Property="Label" String="{@i18n>RequiredDate}"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.Facets">
+                    <Collection>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#Employee"/>
+                            <PropertyValue Property="Label" String="{@i18n>Employee}"/>
+                        </Record>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#Customer"/>
+                            <PropertyValue Property="Label" String="{@i18n>Customer}"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.HeaderFacets">
+                    <Collection>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#OrderID"/>
+                        </Record>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#OrderDate"/>
+                        </Record>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#Freight"/>
+                        </Record>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#RequiredDate"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="NorthwindModel.Order/EmployeeID">
+                <Annotation Term="Common.Label" String="{@i18n>Employee}"/>
+                <Annotation Term="Common.ValueListWithFixedValues" Bool="true"/>
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath" String="Employees"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="EmployeeID"/>
+                                    <PropertyValue Property="ValueListProperty" String="EmployeeID"/>
+                                    <Annotation Term="Common.Label" String="{@i18n>EmployeeID}"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="Employee/FirstName"/>
+                                    <PropertyValue Property="ValueListProperty" String="FirstName"/>
+                                    <Annotation Term="Common.Label" String="{@i18n>FirstName}"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="Employee/LastName"/>
+                                    <PropertyValue Property="ValueListProperty" String="LastName"/>
+                                    <Annotation Term="Common.Label" String="{@i18n>LastName}"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="NorthwindModel.Order/CustomerID">
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath" String="Customers"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="CustomerID"/>
+                                    <PropertyValue Property="ValueListProperty" String="CustomerID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="Customer/CompanyName"/>
+                                    <PropertyValue Property="ValueListProperty" String="CompanyName"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="NorthwindModel.Order/OrderID">
+                <Annotation Term="Common.Label" String="{@i18n>OrderID}"/>
+            </Annotations>
+            <Annotations Target="NorthwindModel.Order/OrderDate">
+                <Annotation Term="Common.Label" String="{@i18n>OrderDate}"/>
+            </Annotations>
+            <Annotations Target="NorthwindModel.Order/ShipCountry">
+                <Annotation Term="Common.Label" String="{@i18n>ShipCountry}"/>
+            </Annotations>
+            <Annotations Target="NorthwindModel.Employee">
+                <Annotation Term="UI.SelectionFields">
+                    <Collection>
+                        <PropertyPath>EmployeeID</PropertyPath>
+                        <PropertyPath>FirstName</PropertyPath>
+                        <PropertyPath>LastName</PropertyPath>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="NorthwindModel.Employee/Address">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+            </Annotations>
+            <Annotations Target="NorthwindModel.Employee/Title">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+            </Annotations>
+            <Annotations Target="NorthwindModel.Employee/TitleOfCourtesy">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+            </Annotations>
+            <Annotations Target="NorthwindModel.Employee/BirthDate">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+            </Annotations>
+            <Annotations Target="NorthwindModel.Employee/HireDate">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+            </Annotations>
+            <Annotations Target="NorthwindModel.Employee/City">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+            </Annotations>
+            <Annotations Target="NorthwindModel.Employee/Region">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+            </Annotations>
+            <Annotations Target="NorthwindModel.Employee/PostalCode">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+            </Annotations>
+            <Annotations Target="NorthwindModel.Employee/Country">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+            </Annotations>
+            <Annotations Target="NorthwindModel.Employee/HomePhone">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+            </Annotations>
+            <Annotations Target="NorthwindModel.Employee/Extension">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+            </Annotations>
+            <Annotations Target="NorthwindModel.Employee/Photo">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+            </Annotations>
+            <Annotations Target="NorthwindModel.Employee/Notes">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+            </Annotations>
+            <Annotations Target="NorthwindModel.Employee/ReportsTo">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+            </Annotations>
+            <Annotations Target="NorthwindModel.Employee/PhotoPath">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+            </Annotations>
+            <Annotations Target="NorthwindModel.Employee/EmployeeID">
+                <Annotation Term="Common.Label" String="{@i18n>EmployeeID}"/>
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Common.Text" Path="LastName"/>
+            </Annotations>
+            <Annotations Target="NorthwindModel.Employee/FirstName">
+                <Annotation Term="Common.Label" String="{@i18n>FirstName}"/>
+            </Annotations>
+            <Annotations Target="NorthwindModel.Employee/LastName">
+                <Annotation Term="Common.Label" String="{@i18n>LastName}"/>
+            </Annotations>
+            <Annotations Target="NorthwindModel.Shipper/CompanyName">
+                <Annotation Term="Common.Label" String="{@i18n>Shipper}"/>
+            </Annotations>
+            <Annotations Target="NorthwindModel.Customer/CustomerID">
+                <Annotation Term="Common.Text" Path="CompanyName"/>
+            </Annotations>
         </Schema>
     </edmx:DataServices>
 </edmx:Edmx>

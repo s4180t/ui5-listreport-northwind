@@ -1,24 +1,24 @@
 {
-    "fileName": "id_1647589971994_8_propertyChange",
+    "fileName": "id_1647604081844_1327_propertyChange",
     "fileType": "change",
     "changeType": "propertyChange",
     "moduleName": "",
     "reference": "orderslistreport",
     "packageName": "",
     "content": {
-        "property": "enableAutoBinding",
-        "newValue": "false"
+        "property": "showClearOnFB",
+        "newValue": true
     },
     "selector": {
-        "id": "orderslistreport::sap.suite.ui.generic.template.ListReport.view.ListReport::Orders--listReport",
+        "id": "orderslistreport::sap.suite.ui.generic.template.ListReport.view.ListReport::Orders--listReportFilter",
         "idIsLocal": false,
-        "type": "sap.ui.comp.smarttable.SmartTable"
+        "type": "sap.ui.comp.smartfilterbar.SmartFilterBar"
     },
     "layer": "CUSTOMER_BASE",
     "texts": {},
     "namespace": "apps/orderslistreport/changes/",
     "projectId": "orderslistreport",
-    "creation": 1647593026007,
+    "creation": 1647604081844,
     "originalLanguage": "",
     "support": {
         "generator": "changeUtils: SAPFioriTools",

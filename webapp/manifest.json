@@ -102,7 +102,22 @@
             }
         },
         "extends": {
-            "extensions": {}
+            "extensions": {
+                "sap.ui.viewExtensions": {
+                    "sap.suite.ui.generic.template.ListReport.view.ListReport": {
+                        "ResponsiveTableColumnsExtension|Orders": {
+                            "type": "XML",
+                            "fragmentName": "orderslistreport.ext.fragment.EmployeeColumn",
+                            "className": "sap.ui.core.Fragment"
+                        },
+                        "ResponsiveTableCellsExtension|Orders": {
+                            "fragmentName": "orderslistreport.ext.fragment.EmployeeCell",
+                            "className": "sap.ui.core.Fragment",
+                            "type": "XML"
+                        }
+                    }
+                }
+            }
         },
         "contentDensities": {
             "compact": true,
@@ -114,8 +129,7 @@
         "settings": {
             "forceGlobalRefresh": false,
             "objectPageHeaderType": "Dynamic",
-            "considerAnalyticalParameters": true,
-            "showDraftToggle": false
+            "considerAnalyticalParameters": true
         },
         "pages": {
             "ListReport|Orders": {
@@ -124,14 +138,14 @@
                     "name": "sap.suite.ui.generic.template.ListReport",
                     "list": true,
                     "settings": {
-                        "condensedTableLayout": true,
-                        "smartVariantManagement": true,
-                        "enableTableFilterInPageVariant": true,
                         "filterSettings": {
                             "dateSettings": {
                                 "useDateRange": true
                             }
-                        }
+                        },
+                        "smartVariantManagement": true,
+                        "variantManagementHidden": true,
+                        "enableTableFilterInPageVariant": true
                     }
                 },
                 "pages": {
@@ -141,16 +155,7 @@
                         "component": {
                             "name": "sap.suite.ui.generic.template.ObjectPage"
                         },
-                        "pages": {
-                          "ObjectPage|Order_Details":{
-                            "navigationProperty": "Order_Details",
-                            "entitySet": "Order_Details",
-                            "defaultLayoutTypeIfExternalNavigation": "MidColumnFullScreen",
-                            "component": {
-                              "name": "sap.suite.ui.generic.template.ObjectPage"
-                            }
-                          }
-                        }
+                        "pages": {}
                     }
                 }
             }
